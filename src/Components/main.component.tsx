@@ -1,17 +1,27 @@
 import React from "react"
+import {
+  Routes, Link, Route, BrowserRouter
+} from "react-router-dom"
 
 const HeaderComponent: React.FC = () => {
-  return <header>Ciao io probabilmente sarò il navigator dell'app</header>
+  return (
+    <>
+      <h1>Ciao sono io</h1>
+      <Link to={'/section'}>section</Link>
+      <Link to={'/footer'}>footer</Link>
+    </>
+  )
 }
 
 const SectionComponent: React.FC = () => {
   const [ciro, setCiro] = React.useState('Ciro')
-  
+
   return (
     <main>
-      Ciao sono <b style={{color: ciro === "SeTtE" ? 'red' : 'black'}}>{ciro}</b> hook
+      <Link to={'/main_window'}>MainWindow</Link>
+      Ciao sono <b style={{ color: ciro === "SeTtE" ? 'red' : 'black' }}>{ciro}</b> hook
       <br /> <br /> <br />
-      
+
       <button onClick={() => setCiro(ciro === 'SeTtE' ? 'Ciro' : 'SeTtE')}>TASTONE</button>
       <br /> <br /> <br />
     </main>
@@ -19,17 +29,28 @@ const SectionComponent: React.FC = () => {
 }
 
 const FooterComponent: React.FC = () => {
-  return <footer>Footer, e vorrei sapere come si usano gli stili ma non ci sto guardando</footer>
-}
-
-const MainComponent: React.FC = () => {
   return (
     <>
-      <HeaderComponent />
-      <SectionComponent />
-      <FooterComponent />
+      <Link to={'/main_window'}>MainWindow</Link>
+      <footer>Footer, e vorrei sapere come si usano gli stili ma non ci sto guardando</footer>
     </>
   )
 }
 
+const MainComponent: React.FC = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/main_window" element={<HeaderComponent />} />
+        <Route path="/section" element={<SectionComponent />} />
+        <Route path="/footer" element={<FooterComponent />} />
+      </Routes>
+    </BrowserRouter>
+  )
+}
+
 export default MainComponent
+
+{/* <HeaderComponent />
+<SectionComponent />
+<FooterComponent /> */}
