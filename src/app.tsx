@@ -1,11 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import MainComponent from './Components/main.component';
 
-
-const App: React.FC = () => {
-  return <>Ciao</>
-}
-
-export default App
-
-ReactDOM.render(<App />, document.body);
+ReactDOM.render(<MainComponent />, document.body);
